@@ -12,14 +12,28 @@ function App() {
   const onAdd = (product) => {
     const itemExist = cartItems.find((element) => element.id === product.id);
     if(itemExist){
-      setCartItems(cartItems.map((element) => 
-      element.id === product.id ? {...itemExist, quantity: itemExist.quantity + 1 } : element
+      setCartItems(cartItems.map((element) => {
+          return element.id === product.id ? {...itemExist, quantity: itemExist.quantity + 1 } : element
+      }
       )
       );
     } else {
       setCartItems([...cartItems, {...product, quantity: 1}])
     }
   };
+
+  const onOdd = (product) => {
+    const itemExist = cartItems.find((element) => element.id === product.id);
+    if(itemExist.quantity === 1){
+      setCartItems(cartItems.filter((element) => element.id !== product.id))
+    } else {
+      setCartItems(
+        cartItems.map((element) => {
+          return element.id === product.id ? {...itemExist, quantity: itemExist.quantity - 1 } : element
+        })
+      )
+    }
+  }
   
   return (
     <div className="App">
@@ -29,7 +43,7 @@ function App() {
       {/* shopping list and cart */}
       <div className='row'>
         <List onAdd={onAdd} products={products}></List>
-        <Cart onAdd={onAdd} cartItems={cartItems}></Cart>
+        <Cart onAdd={onAdd} onOdd={onOdd} cartItems={cartItems}></Cart>
       </div>
     </div>
   );

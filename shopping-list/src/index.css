@@ -14,6 +14,9 @@ h1, h2{
 .col-1{
   flex: 1;
 }
+.col-2{
+  flex: 2;
+}
 .blockLook{
   background-color: rgb(92, 80, 80);
   padding: 1rem;
