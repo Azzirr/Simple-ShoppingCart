@@ -4,11 +4,25 @@ import List from './components/List'
 import Cart from './components/Cart'
 import data from './products';
 import { useState } from 'react';
+import FilterProduct from './components/FilterProduct';
 
 
 function App() {
   const {products} = data;
   const [cartItems, setCartItems] = useState([]);
+  let [newProductList, updateProductList] = useState(products);
+  let [filterTextValue, updateFilterText] = useState('all');
+  let filteredProductList = newProductList.filter((product) => {
+    if(filterTextValue === 'animals'){
+      return product.category === true;
+    } else if(filterTextValue === 'guns'){
+      return product.category === true;
+    } else if(filterTextValue === 'food'){
+      return product.category === true;
+    } else {
+      return product;
+    }
+  })
 
   const onAdd = (product) => {
     const itemExist = cartItems.find((element) => element.id === product.id);
@@ -35,6 +49,10 @@ function App() {
       )
     }
   }
+
+  function onFilterValueSelected(filterValue){
+    updateFilterText(filterValue)
+  }
   
   return (
     <div className="App">
@@ -45,6 +63,9 @@ function App() {
       <div className='row'>
         <List onAdd={onAdd} products={products}></List>
         <Cart onAdd={onAdd} onOdd={onOdd} cartItems={cartItems}></Cart>
+      </div>
+      <div className='blockLook'>
+        <FilterProduct filterValueSelected={onFilterValueSelected}></FilterProduct>
       </div>
     </div>
   );
