@@ -8,9 +8,6 @@ h1, h2{
   display: flex;
   justify-content: space-between;
 }
-.row.center{
-  align-items: center;
-}
 .col-1{
   flex: 1;
 }
