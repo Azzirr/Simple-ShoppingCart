@@ -5,22 +5,22 @@ import Cart from './components/Cart'
 import data from './products';
 import { useState } from 'react';
 import FilterProduct from './components/FilterProduct';
+import AddProduct from './components/AddProduct';
 
 
 function App() {
-  const {products} = data;
   const [cartItems, setCartItems] = useState([]);
-  let [newProductList, updateProductList] = useState(products);
-  let [filterTextValue, updateFilterText] = useState('all');
-  let filteredProductList = newProductList.filter((product) => {
-    if(filterTextValue === 'animals'){
-      return product.category === true;
+  const [newProductList, updateProductList] = useState(data.products);
+  const [filterTextValue, updateFilterText] = useState('all');
+  const filteredProductList = newProductList.filter((product) => {
+    if(filterTextValue === 'all'){
+      return product
+    } else if(filterTextValue === 'animals'){
+      return product.category.includes('animals')
     } else if(filterTextValue === 'guns'){
-      return product.category === true;
+      return product.category.includes('guns')
     } else if(filterTextValue === 'food'){
-      return product.category === true;
-    } else {
-      return product;
+      return product.category.includes('food')
     }
   })
 
@@ -53,19 +53,20 @@ function App() {
   function onFilterValueSelected(filterValue){
     updateFilterText(filterValue)
   }
-  
+
   return (
     <div className="App">
       <div>
         <Header></Header>
       </div>
       {/* shopping list and cart */}
-      <div className='row'>
-        <List onAdd={onAdd} products={products}></List>
+      <div className='row blockLook'>
+        <List onAdd={onAdd} products={filteredProductList}></List>
         <Cart onAdd={onAdd} onOdd={onOdd} cartItems={cartItems}></Cart>
       </div>
-      <div className='blockLook'>
+      <div className='blockLook row'>
         <FilterProduct filterValueSelected={onFilterValueSelected}></FilterProduct>
+        <AddProduct></AddProduct>
       </div>
     </div>
   );
