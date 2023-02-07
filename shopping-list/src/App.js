@@ -21,6 +21,8 @@ function App() {
       return product.category.includes('guns')
     } else if(filterTextValue === 'food'){
       return product.category.includes('food')
+    } else if(product.name.toLowerCase().includes(filterTextValue)){
+      return product.name.toLowerCase().includes(filterTextValue)
     }
   })
 
@@ -29,9 +31,7 @@ function App() {
     if(itemExist){
       setCartItems(cartItems.map((element) => {
           return element.id === product.id ? {...itemExist, quantity: itemExist.quantity + 1 } : element
-      }
-      )
-      );
+      }));
     } else {
       setCartItems([...cartItems, {...product, quantity: 1}])
     }
@@ -53,7 +53,7 @@ function App() {
   function onFilterValueSelected(filterValue){
     updateFilterText(filterValue)
   }
-
+  console.log(filterTextValue)
   return (
     <div className="App">
       <div>
@@ -68,6 +68,7 @@ function App() {
         <FilterProduct filterValueSelected={onFilterValueSelected}></FilterProduct>
         <AddProduct></AddProduct>
       </div>
+      <input className='blockLook' type="text" placeholder="Search..." onChange={(e)=>onFilterValueSelected(e.target.value)}></input>
     </div>
   );
 }

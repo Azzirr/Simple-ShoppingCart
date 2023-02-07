@@ -9,11 +9,9 @@ export default function Product(props){
     return (
     <div>
         <div>
-            <div>
-                <ul>
-                    <h3>{product.name}</h3>
-                </ul>
-            </div>
+            <ul>
+                <h3>{product.name}</h3>
+            </ul>
             <div>
                 <button onClick={() => onAdd(product)} id="ButtonAdd" onContextMenu={(e) => {deleteItem()}}>Add to cart</button>
             </div>
