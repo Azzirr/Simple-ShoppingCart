@@ -11,7 +11,7 @@ export default function Cart(props){
                     <div className='col-2'>{item.name}</div>
                     <div className='col-2'>
                         <button onClick={() => onAdd(item)} className="add">Add</button>
-                        <button onClick={() => onOdd(item)} className="odd">Odd</button>
+                        <button onContextMenu={(event) => onOdd(item, event)} className="odd">Odd</button>
                     </div>
                     <div className='col-2'>
                         {item.quantity}

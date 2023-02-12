@@ -1,21 +1,35 @@
+import { useState } from "react";
 export default function FilterProduct(props){
+    const [shouldDisabled, setShouldDisabled] = useState('')
+
     function onFilterValueChanged(event){
-        props.filterValueSelected(event.target.value)
+        if(event.target.name === 'test' && event.target.checked){
+            setShouldDisabled(true)
+        } else {
+            setShouldDisabled(false)
+        }
+        props.filterValueSelected(event.target.value, event.target.name === 'test' && event.target.checked)
+
     }
+    let uniqueCategories = [...new Set (props.avalibaleProducts.map((element) => element.category))]
+
+    let categories = uniqueCategories.map((element) => ({value: element, name: element}))
+  
     return(
         <div>
-            <select onChange={onFilterValueChanged}>
+            {/* <select onChange={onFilterValueChanged}>
                 <option value='all'>All</option>
                 <option value='animals'>Animals</option>
                 <option value='food'>Food</option>
                 <option value='guns'>Guns</option>
+            </select> */}
+            <select onChange={onFilterValueChanged} disabled={shouldDisabled}>
+                <option>Select</option>
+                {categories.map(option => <option key={option.value} value={option.value}>{option.name}</option>)}
             </select>
             <div className='row2'>
-                <input value="food" type="checkbox" onChange={onFilterValueChanged}></input>
-                <p>Is food?</p>
-            </div>
-            <div>
-                <input type="text" placeholder="Search for items"></input>
+                <input name="test" value="all" type="checkbox" onChange={onFilterValueChanged}></input>
+                <p>Animal or gun</p>
             </div>
         </div>
     )
