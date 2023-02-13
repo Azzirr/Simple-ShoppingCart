@@ -4,6 +4,8 @@ import categories from './FilterProduct'
 export default function AddProduct(props){
     const [newName, setName] = useState('')
     const [newCategory, setCategory] = useState('')
+        // x
+
     function getName(event){
         setName(event.target.value)
     }

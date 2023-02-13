@@ -2,7 +2,7 @@ import React from 'react';
 import data from '../products';
 export default function Product(props){
     const {product, onAdd} = props;
-    // TO DO! Delete item funcionality!
+    // TO DO! Delete item funcionality! x
     function deleteItem(id){
         console.log(data.products[1]) 
     }

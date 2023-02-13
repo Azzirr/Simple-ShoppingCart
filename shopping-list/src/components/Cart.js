@@ -2,6 +2,8 @@ import React from 'react';
 
 export default function Cart(props){
     const {cartItems, onAdd, onOdd} = props;
+        // x
+
     return(
         <div className='row blockLook'>
             <h2>Cart</h2>

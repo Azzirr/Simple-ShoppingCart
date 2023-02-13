@@ -17,6 +17,8 @@ function App() {
     if(filterTextValue === 'all'){
       return product
     }
+        // x
+
     
     else if(filterTextValue === 'animals'){
       return product.category.includes('animals')
