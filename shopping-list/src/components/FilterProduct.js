@@ -1,7 +1,6 @@
 import { useState } from "react";
 export default function FilterProduct(props){
     const [shouldDisabled, setShouldDisabled] = useState('')
-    // x
     function onFilterValueChanged(event){
         if(event.target.name === 'test' && event.target.checked){
             setShouldDisabled(true)
@@ -24,7 +23,7 @@ export default function FilterProduct(props){
                 <option value='guns'>Guns</option>
             </select> */}
             <select onChange={onFilterValueChanged} disabled={shouldDisabled}>
-                <option>Select</option>
+                <option value="all">Select</option>
                 {categories.map(option => <option key={option.value} value={option.value}>{option.name}</option>)}
             </select>
             <div className='row2'>

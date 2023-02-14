@@ -4,17 +4,15 @@ import categories from './FilterProduct'
 export default function AddProduct(props){
     const [newName, setName] = useState('')
     const [newCategory, setCategory] = useState('')
-        // x
-
+    const [checked, setChecked] = useState(false);
     function getName(event){
         setName(event.target.value)
     }
     function getCategory(event){
         setCategory(event.target.value)
     }
-    const [checked, setChecked] = useState(false); 
     const handleChange = () => { 
-      setChecked(!checked); 
+      setChecked(!checked);
     }; 
     function test(){
         function getNextId(){
@@ -22,13 +20,15 @@ export default function AddProduct(props){
             // converting to number and adding 1 to get new ID
             newID = +newID + 1;
             newID = newID.toString();
-            console.log(newID);
             return newID;
         }
         // TO DO!! FUNCIONALITY THAT GET VALUE FROM INPUTS
         let id = getNextId();
         let name = newName;
         let category = newCategory;
+        if(checked === true){
+            category = 'food';
+        }
         const newProduct = {id: id, name: name, category: category};
 
         props.addProductToList(newProduct)
@@ -44,8 +44,10 @@ export default function AddProduct(props){
             <div>
                 <input type="text" placeholder="Type category" onChange={getCategory} disabled={checked}></input>
             </div>
-            <input type="checkbox" onChange={handleChange}></input>
-            
+            <div className='row2'>
+                <input type="checkbox" onChange={handleChange}></input>
+                <p>Is food?</p>
+            </div>
             <div>
                 <button onClick={test}>Add</button>
             </div>

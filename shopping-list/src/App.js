@@ -13,7 +13,6 @@ function App() {
   const [newProductList, updateProductList] = useState(data.products);
   const [filterTextValue, updateFilterText] = useState('all');
   const filteredProductList = newProductList.filter((product) => {
-    console.log('test123dsadsadsad', filterTextValue)
     if(filterTextValue === 'all'){
       return product
     }
@@ -71,7 +70,6 @@ function App() {
       updateFilterText(filterValue)
     }
   }
-  console.log(filterTextValue)
   return (
     <div className="App">
       <div>

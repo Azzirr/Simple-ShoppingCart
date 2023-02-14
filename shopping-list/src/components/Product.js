@@ -1,19 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import data from '../products';
 export default function Product(props){
     const {product, onAdd} = props;
-    // TO DO! Delete item funcionality! x
-    function deleteItem(id){
-        console.log(data.products[1]) 
+    const {style, setStyle} = useState()
+    // TO DO! Delete item funcionality!
+    function deleteItem(event){
+        event.preventDefault()
+        setStyle({"text-decoration": `${product.name === "Beer" ? "line-through" : "auto" }`})
     }
     return (
     <div>
         <div>
             <ul>
-                <h3>{product.name}</h3>
+                <h3 style={style}>{product.name}</h3>
             </ul>
             <div>
-                <button onClick={() => onAdd(product)} id="ButtonAdd" onContextMenu={(e) => {deleteItem()}}>Add to cart</button>
+                <button onClick={() => onAdd(product)} onContextMenu={deleteItem}>Add to cart</button>
             </div>
         </div>
     </div>
