@@ -1,6 +1,5 @@
 import data from '../products.js'
 import React, {useState} from 'react';
-import categories from './FilterProduct'
 export default function AddProduct(props){
     const [newName, setName] = useState('')
     const [newCategory, setCategory] = useState('')
@@ -13,8 +12,8 @@ export default function AddProduct(props){
     }
     const handleChange = () => { 
       setChecked(!checked);
-    }; 
-    function test(){
+    };
+    function addItem(){
         function getNextId(){
             let newID = data.products.slice(-1)[0].id;
             // converting to number and adding 1 to get new ID
@@ -22,19 +21,21 @@ export default function AddProduct(props){
             newID = newID.toString();
             return newID;
         }
-        // TO DO!! FUNCIONALITY THAT GET VALUE FROM INPUTS
         let id = getNextId();
         let name = newName;
         let category = newCategory;
         if(checked === true){
-            category = 'food';
+            category = 'food'
+        } else {
+            category = newCategory;
         }
         const newProduct = {id: id, name: name, category: category};
 
         props.addProductToList(newProduct)
         data.products.push(newProduct);
-        console.log(categories)
+
         console.log(data);
+        
     }
     return(
         <div>
@@ -42,14 +43,14 @@ export default function AddProduct(props){
                 <input type="text" placeholder="Type name" onChange={getName}></input>
             </div>
             <div>
-                <input type="text" placeholder="Type category" onChange={getCategory} disabled={checked}></input>
+                <input id="1" type="text" onChange={getCategory} disabled={checked}></input>
             </div>
             <div className='row2'>
                 <input type="checkbox" onChange={handleChange}></input>
                 <p>Is food?</p>
             </div>
             <div>
-                <button onClick={test}>Add</button>
+                <button onClick={addItem}>Add</button>
             </div>
         </div>
     )

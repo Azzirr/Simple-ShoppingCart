@@ -15,26 +15,18 @@ function App() {
   const filteredProductList = newProductList.filter((product) => {
     if(filterTextValue === 'all'){
       return product
-    }
-        // x
-
-    
-    else if(filterTextValue === 'animals'){
+    } else if(filterTextValue === 'animals'){
       return product.category.includes('animals')
     } else if(filterTextValue === 'guns'){
       return product.category.includes('guns')
     } else if(filterTextValue === 'food'){
       return product.category.includes('food')
-    }
-    
-    else if(filterTextValue === 'Gunsy i zwierzaki'){
+    } else if(filterTextValue === 'Gunsy i zwierzaki'){
       return product.category.includes('guns') || product.category.includes('animals')
-    }
-     else if(product.name.toLowerCase().includes(filterTextValue.toLowerCase())){
+    } else if(product.name.toLowerCase().includes(filterTextValue.toLowerCase())){
       return product.name.toLowerCase().includes(filterTextValue.toLowerCase())
     } else {
       return product.category.includes[filterTextValue]
-
     }
   })
 
